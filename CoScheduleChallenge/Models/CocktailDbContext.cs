@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CoSchedule_Challenge.Models
+namespace CoScheduleChallenge.Models
 {
     public class CocktailDbContext : DbContext
     {
@@ -12,5 +12,6 @@ namespace CoSchedule_Challenge.Models
             : base(options) { }
 
         public DbSet<Cocktail> Cocktails { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

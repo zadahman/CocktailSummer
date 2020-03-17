@@ -2,22 +2,4 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/CoScheduleChallenge/CoScheduleChallenge/bin/Debug/netcoreapp3.1
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1
-/CoScheduleChallenge/.vs/CoScheduleChallenge/v16
-/CoScheduleChallenge/.vs/CoScheduleChallenge/DesignTimeBuild
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/staticwebassets
-*.cache
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.csproj.FileListAbsolute.txt
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.csproj.CopyComplete
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.dll
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.Views.pdb
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.Views.dll
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.RazorTargetAssemblyInfo.cs
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.RazorAssemblyInfo.cs
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.pdb
-/CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1/CoScheduleChallenge.exe
-/CoScheduleChallenge/CoScheduleChallenge/obj/CoScheduleChallenge.csproj.nuget.dgspec.json
-/CoScheduleChallenge/CoScheduleChallenge/obj/project.assets.json
-/CoScheduleChallenge/CoScheduleChallenge/obj/CoScheduleChallenge.csproj.nuget.g.targets
-/CoScheduleChallenge/CoScheduleChallenge/obj/CoScheduleChallenge.csproj.nuget.g.props
+/.vs/CoScheduleChallenge

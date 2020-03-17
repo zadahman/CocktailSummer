@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="card mt-3 pt-2">
+    <div class="card-header">
+        <h5>Spice up your summer with refreshing cocktails from our directory.</h5>
+        <button id="random" class="btn btn-outline-primary btn-sm mr-4">
+            <span id="findSpan" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Find a Random Cocktail
+        </button>
+        <button id="addToFav" class="btn btn-outline-primary btn-sm invisible">
+            <span id="addSpan" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Add to Favorites
+        </button>
+    </div>
+    <div id="cocktailResult" class="card-body">
+        <div class="row">
+            <p class="col" id="description"></p>
+            <div class="col" id="cocktailImage"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        let random = document.getElementById("random");
+        let addToFavs = document.getElementById("addToFav");
+
+		let desc = document.getElementById('description');
+        let cocktailImgDiv = document.getElementById("cocktailImage");
+
+        var cocktailData;
+
+        random.addEventListener("click", event => {
+            event.preventDefault();
+            $('#findSpan').show();
+
+            var element = document.getElementById("ctImg");
+            if (element) {
+                element.remove();
+            }
+
+			fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+				.then((response) => { return response.json(); })
+                .then((data) => {
+                    cocktailData = data.drinks;
+                    data.drinks.forEach(drink => {
+						var img = document.createElement('img');
+                        img.src = drink.strDrinkThumb;
+                        img.id = "ctImg";
+                        img.style.width = "300px";
+                        img.style.height = "300px";
+
+                        $('#findSpan').hide();
+                        var cocktailDesc = "Name: " + drink.strDrink + "<br />Drink Type: " + drink.strAlcoholic + "<br />Glass Type: " + drink.strGlass + "<br />Cocktail Type: " + drink.strCategory;
+                        desc.innerHTML = cocktailDesc;
+                        cocktailImgDiv.appendChild(img);
+                    });
+
+                    $('#addToFav').removeClass("invisible");
+                    $('#addToFav').addClass("visible");
+				});
+		});
+
+        addToFavs.addEventListener("click", event => {
+            event.preventDefault();
+            $('#addSpan').show();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddCocktail", "Home")',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(cocktailData[0]),
+                success: function (response) {
+                    $('#description').empty();
+                    $('#cocktailImage').empty();
+                    $('#addSpan').hide();
+                    $('#addToFav').removeClass("visible");
+                    $('#addToFav').addClass("invisible");
+
+                    document.getElementById('description').innerHTML = response;
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
+		});
+
+        $(document).ready(function () {
+            $(".active").removeClass("active");
+            $("#link-home").addClass("active");
+            $(".spinner-border").hide();
+        });
+
+    </script>
+}
