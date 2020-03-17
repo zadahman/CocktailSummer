@@ -120,7 +120,5 @@ namespace CoSchedule_Challenge.Models
 
 		[JsonPropertyName("strMeasure15")]
 		public string MeasureForIngredient15 { get; set; }
-
-		public string Notes { get; set; }
 	}
 }

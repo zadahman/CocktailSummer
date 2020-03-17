@@ -8,27 +8,36 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <span class="my-2 my-sm-0 mb-0 h4">
-            @Html.ActionLink("Home", "Index", "Home", new { area = "" })
-        </span>
-        <span class="nav-item nav-link mb-0 h4 my-2 my-lg-2">
-            @Html.ActionLink("Favorites", "Favorites", "Home")
-        </span>
-    </nav>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <nav class="navbar navbar-inverse navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">
+                        <img src="../../Images/cocktail.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                    </a>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Cocktail Summer</p>
-        </footer>
+                    <span class="nav-item nav-link h5">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" })
+                    </span>
+                    <span class="nav-item nav-link h5">
+                        @Html.ActionLink("Favorites", "Favorites", "Home")
+                    </span>
+                </nav>
+            </div>
+
+            <div class="col-4 body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Cocktail Summer</p>
+                </footer>
+            </div>
+        </div>
     </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @RenderSection("Scripts", required: false)
+        @RenderSection("Scripts", required: false)
 </body>
 </html>

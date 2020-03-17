@@ -1,44 +1,58 @@
 ﻿@model CoSchedule_Challenge.Models.Cocktail;
 
 @{
-    ViewBag["Title"] = "Edit Cocktail";
+    ViewBag.Title = "Edit Cocktail";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div>
+<h1>
+    ViewBag.Title
+</h1>
+<div class="form-horizontal">
     @using (Html.BeginForm())
     {
-        <div class="row">
-            <div>
-                @Html.LabelFor(model => model.Name)
-            </div>
-            <div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.Name)
             </div>
-            <div>
-                @Html.LabelFor(model => model.DrinkCategory)
-            </div>
-            <div>
-                @Html.EditorFor(model => model.DrinkCategory)
-            </div>
-            <div>
-                @Html.LabelFor(model => model.GlassType)
-            </div>
-            <div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("GlassType")
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.GlassType)
             </div>
-            <div>
-                @Html.LabelFor(model => model.DrinkType)
-            </div>
-            <div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Drink Type")
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.DrinkType)
             </div>
-            <div>
-                @Html.LabelFor(model => model.Notes)
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Drink Category")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DrinkCategory)
             </div>
-            <div>
-                @Html.EditorFor(model => model.Notes)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Instructions)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Instructions)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
             </div>
         </div>
     }
+
+    <div>
+        @Html.ActionLink("Back to List", "Favorites")
+    </div>
 </div>

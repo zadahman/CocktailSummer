@@ -59,10 +59,10 @@ namespace CoScheduleChallenge.Controllers
             return View(cocktail);
         }
 
-        [HttpPut]
-        public ActionResult EditCocktail(string id, [FromBody] Cocktail model)
+        [HttpPost]
+        public IActionResult EditCocktail(Cocktail model)
         {
-            Cocktail getCocktail = _dbContext.Cocktails.Find(id);
+            Cocktail getCocktail = _dbContext.Cocktails.Find(model.Id);
 
             try
             {
@@ -104,7 +104,7 @@ namespace CoScheduleChallenge.Controllers
                 getCocktail.MeasureForIngredient15 = model.MeasureForIngredient15;
 
                 _dbContext.SaveChanges();
-                return new JsonResult($"{getCocktail.Name} has been updated successfully.");
+                return RedirectToAction("Favorites");
             }
             catch(Exception ex)
             {

@@ -80,17 +80,8 @@
                         </div>
                     </td>
                     <td>
-                        <button class="btn btn-primary btn-sm" onclick="location.href='@Html.ActionLink("Edit","EditCocktail", "Home", new { id = @item.Id })'" type="button">
-                            Edit
-                        </button>
-
-                        <button class="btn btn-primary btn-sm" onclick='update(@item.Id, @Html.Raw(Json.Serialize(item)))' type="button">
-                            Update
-                        </button>
-
-                        <button class="btn btn-primary btn-sm" onclick="deleteCocktail(@item.Id)" type="button">
-                            Delete
-                        </button>
+                        <input type="button" title="Edit" class="btn btn-primary btn-sm" value="Edit" onclick="location.href='@Url.Action("EditCocktail", "Home", new { id = item.Id })'" />
+                        <button class="btn btn-primary btn-sm" onclick="deleteCocktail(@item.Id)" type="button">Delete</button>
                     </td>
                 </tr>
             }
@@ -103,7 +94,6 @@
 
 @section Scripts  {
     <script>
-
         function editing(ctId) {
              $.ajax({
                 type: 'GET',
@@ -119,23 +109,7 @@
             });
         };
 
-        function update(cocktailId, query) {
-            $.ajax({
-                type: 'PUT',
-                url: '@Url.Action("EditCocktail", "Home")?id=' + cocktailId,
-                dataType: 'json',
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify( query ),
-                success: function (response) {
-                    alert(response);
-                },
-                error: function (err) {
-                    alert(err.responseText);
-                }
-            });
-        };
-
-    function deleteCocktail(id) {
+        function deleteCocktail(id) {
         $.ajax({
             type: 'DELETE',
             url: '@Url.Action("DeleteCocktail", "Home")?id=' + id,
@@ -150,6 +124,5 @@
             }
         });
     }
-
     </script>
 }
