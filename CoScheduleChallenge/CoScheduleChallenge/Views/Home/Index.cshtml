@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="header" class="jumbotron">
+    <h2>Cocktail Summer - Let's get to finding cocktails for the summer.</h2>
+    <button id="random" class="btn btn-primary btn-sm"> Find a random cocktail</button>
+	<button id="addToFav" class="btn btn-primary btn-sm invisible">Add to Favorites</button>
+</div>
+
+<div class="container">
+	<div class="row" id="cocktailResult">
+		<p class="col" id="description"></p>
+		<div class="col" id="cocktailImage"></div>
+	</div>
+</div>
+
+@section Scripts {
+	<script type="text/javascript">
+        let random = document.getElementById("random");
+        let addToFavs = document.getElementById("addToFav");
+	
+		let desc = document.getElementById('description');
+        let cocktailImgDiv = document.getElementById("cocktailImage");
+
+        var cocktailData;
+
+        random.addEventListener("click", event => {			
+            event.preventDefault();
+
+            var element = document.getElementsByTagName("img");
+            if (element.length !== 0) {
+                element[0].remove();
+            }
+		
+			fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+				.then((response) => { return response.json(); })
+                .then((data) => {
+                    cocktailData = data.drinks;
+                    data.drinks.forEach(drink => {
+                        $('#head').removeClass("invisible");
+                        $('#head').addClass("visible");
+
+						var img = document.createElement('img'); 
+                        img.src = drink.strDrinkThumb;
+                        img.style.width = "300px";
+                        img.style.height = "300px";
+
+                        var cocktailDesc = "\nName: " + drink.strDrink + "\nGlass Type: " + drink.strGlass + "\nCocktail Type: " + drink.strCategory;
+                        desc.innerHTML = cocktailDesc;
+                        cocktailImgDiv.appendChild(img);
+                    });
+					
+                    $('#addToFav').removeClass("invisible");
+                    $('#addToFav').addClass("visible");
+				});
+		});
+
+        addToFavs.addEventListener("click", event => {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddCocktail", "Home")',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(cocktailData[0]),
+                success: function (response) {
+
+                    $('#description').empty();
+                    $('#cocktailImage').empty();
+                    $('#addToFav').removeClass("visible");
+                    $('#addToFav').addClass("invisible");
+					
+					let desc = document.getElementById('description');
+					desc.innerHTML = response;
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });                   
+		});
+
+	</script>
+}

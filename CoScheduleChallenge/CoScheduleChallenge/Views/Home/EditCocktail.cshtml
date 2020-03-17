@@ -1,0 +1,44 @@
+﻿@model CoSchedule_Challenge.Models.Cocktail;
+
+@{
+    ViewBag["Title"] = "Edit Cocktail";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div>
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Name)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.DrinkCategory)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.DrinkCategory)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.GlassType)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.GlassType)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.DrinkType)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.DrinkType)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Notes)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.Notes)
+            </div>
+        </div>
+    }
+</div>
