@@ -1,8 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using CoScheduleChallenge.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.Web;
+using System.Text.Json.Serialization;
 
-namespace CoScheduleChallenge.Models
+namespace CoSchedule_Challenge.Models
 {
-	public class Cocktail
+    public class Cocktail
     {
         [JsonPropertyName("idDrink")]
         public string Id { get; set; }
