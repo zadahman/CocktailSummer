@@ -2,4 +2,11 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/CoScheduleChallenge
+
+/.vs
+/.vs
+
+bin
+obj
+*.suo
+*.user
