@@ -8,21 +8,24 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="nav navbar-nav">
-                <a class="navbar-brand" href='@Url.Action("Index", "Home")'>
-                    <img src="~/Images/cocktail.jpg" width="30" height="30" alt="">
+    <div class="container" style="background-color: #e3f2fd">
+        <ul class="nav nav-pills navbar-light" style="background-color: #e3f2fd">
+            <li class="nav-item">
+                <a class="navbar-brand mr-3" href='@Url.Action("CocktailHome", "Home")'>
+                    <img src="~/Images/cocktail.png" width="20" height="20">
+                    Cocktail Summer
                 </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Home", new { area = "" })</li>
-                <li>@Html.ActionLink("Favorites", "Favorites", "Home")</li>
-            </ul>
-        </div>
-    </nav>
+            </li>
+            <li class="nav-item mr-2">
+                @Html.ActionLink("Home", "CocktailHome", "Home", new { area = "" }, new { @class = "nav-link", @id = "link-home" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Favorites", "Favorites", "Home", new { area = "" }, new { @class = "nav-link", @id = "link-favorite" })
+            </li>
+        </ul>
+    </div>
 
-    <div class="container body-content">
+    <div class="container bg-light body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -31,7 +34,7 @@
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
