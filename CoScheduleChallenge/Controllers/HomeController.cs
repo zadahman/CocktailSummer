@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -25,7 +26,8 @@ namespace CoScheduleChallenge.Controllers
             {
                 return RedirectToAction("CocktailHome"); 
             }
-            return View();
+            //return View();
+            return RedirectToAction("CocktailHome");
         }
 
         [HttpPost]
@@ -48,6 +50,12 @@ namespace CoScheduleChallenge.Controllers
         public IActionResult CocktailHome()
         {
             return View();
+        }
+
+        public IActionResult Find([FromQuery]List< Cocktail> model)
+        {
+
+            return PartialView("Find",model);
         }
 
         [HttpPost]

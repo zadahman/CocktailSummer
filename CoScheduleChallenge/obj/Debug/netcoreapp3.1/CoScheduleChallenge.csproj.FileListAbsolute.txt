@@ -158,3 +158,4 @@ C:\Users\zilla\Documents\CocktailSummer\CoScheduleChallenge\obj\Debug\netcoreapp
 C:\Users\zilla\Documents\CocktailSummer\CoScheduleChallenge\obj\Debug\netcoreapp3.1\CoScheduleChallenge.RazorTargetAssemblyInfo.cs
 C:\Users\zilla\Documents\CocktailSummer\CoScheduleChallenge\obj\Debug\netcoreapp3.1\CoScheduleChallenge.Views.pdb
 C:\Users\zilla\Documents\CocktailSummer\CoScheduleChallenge\obj\Debug\netcoreapp3.1\CoScheduleChallenge.csproj.CopyComplete
+C:\Users\zilla\Documents\CocktailSummer\CoScheduleChallenge\obj\Debug\netcoreapp3.1\Razor\Views\Home\Find.cshtml.g.cs
