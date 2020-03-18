@@ -1,6 +1,4 @@
-﻿@model CoScheduleChallenge.Models.Comment;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,26 +31,24 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - Cocktail Summer</p>
 
-            @Html.BeginForm(){
-            <div class="form-group row mt-md-5">
-                @Html.LabelFor("UserComment", "Comment", new { @class = "col-sm-2 col-form-label" })
-                <div class="col-sm-10">
-                    @Html.TextAreaFor(model => model.UserComment, new { @class = "form-control" })
+            <div class="form-group row mt-md-5 pb-lg-3">
+                <label for="comment" class="col-sm-2 col-form-label">Comment</label>
+                <div class="col-sm-8">
+
+                    <textarea class="form-control"
+                              cols="20"
+                              id="comment"
+                              name="comment"
+                              placeholder="Enter your comments..."
+                              rows="2"></textarea>
                 </div>
-                @*<label for="comment" class="col-sm-2 col-form-label">Comment</label>
-            <div class="col-sm-10">
-                <textarea class="form-control"
-                          cols="20"
-                          id="comment"
-                          name="comment"
-                          placeholder="Enter your comments..."
-                          rows="2"></textarea>
-            </div>*@
-                <div>
-                    <button id="updateComment" class="btn btn-outline-info" type="submit" onclick="updateComment() "> Update Comment </button>
+                <div class="col-sm-2">
+                    <button id="updateComment" class="btn btn-outline-info" type="button" onclick="updateComment() ">
+                        <span id="updateSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Update Comment
+                    </button>
                 </div>
             </div>
-            }
 
 
         </footer>
@@ -63,7 +59,9 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function () {
+            $(".spinner-border").hide();
              $.ajax({
                 type: 'GET',
                 url: '@Url.Action("GetComment", "Home")',
@@ -79,22 +77,28 @@
         });
 
         function updateComment() {
+            $('#updateSpinner').show();
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("UpdateComment", "Home")',
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify( $('#comment').val()),
+                data: JSON.stringify($('#comment').val()),
                 success: function (response) {
                     $('#comment').val(response);
+                    $('#updateSpinner').hide();
                 },
                 error: function (err) {
                     alert(err.responseText);
                 }
             });
         }
+
+
+
+
     </script>
 
-    @RenderSection("Scripts", required: false)
+@RenderSection("Scripts", required: false)
 </body>
 </html>

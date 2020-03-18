@@ -50,7 +50,13 @@ namespace CoScheduleChallenge.Controllers
         [HttpGet]
         public IActionResult CocktailHome()
         {
-            return View();
+            User user = _dbContext.Users.FirstOrDefault();
+            if (user != null)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -73,7 +79,13 @@ namespace CoScheduleChallenge.Controllers
         [HttpGet]
         public IActionResult Favorites()
         {
-            return View(_dbContext.Cocktails.ToList());
+            User user = _dbContext.Users.FirstOrDefault();
+            if (user != null)
+            {
+                return View(_dbContext.Cocktails.ToList());
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -112,12 +124,18 @@ namespace CoScheduleChallenge.Controllers
             {
                 Comment getComment = new Comment();
 
-                if (_dbContext.Comments.Any())
+                if (!_dbContext.Comments.Any())
+                {
+                    getComment.UserComment = comment;
+                    _dbContext.Comments.Add(getComment); 
+                }
+                else
                 {
                     getComment = _dbContext.Comments.FirstOrDefault();
+                    getComment.UserComment = comment;
                 }
 
-                getComment.UserComment = comment;
+
                 _dbContext.SaveChanges();
 
                 return new JsonResult(getComment.UserComment);

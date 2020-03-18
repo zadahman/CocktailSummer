@@ -58,21 +58,66 @@
                                 @Html.DisplayFor(modelItem => item.Instructions)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient1) @Html.DisplayFor(modelItem => item.Ingredient1) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient2) @Html.DisplayFor(modelItem => item.Ingredient2) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient3) @Html.DisplayFor(modelItem => item.Ingredient3) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient4) @Html.DisplayFor(modelItem => item.Ingredient4) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient5) @Html.DisplayFor(modelItem => item.Ingredient5) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient6) @Html.DisplayFor(modelItem => item.Ingredient6) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient7) @Html.DisplayFor(modelItem => item.Ingredient7) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient8) @Html.DisplayFor(modelItem => item.Ingredient8) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient9) @Html.DisplayFor(modelItem => item.Ingredient9) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient10) @Html.DisplayFor(modelItem => item.Ingredient10) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient11) @Html.DisplayFor(modelItem => item.Ingredient11) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient12) @Html.DisplayFor(modelItem => item.Ingredient12) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient13) @Html.DisplayFor(modelItem => item.Ingredient13) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient14) @Html.DisplayFor(modelItem => item.Ingredient14) <br />
-                                @Html.DisplayFor(modelItem => item.MeasureForIngredient15) @Html.DisplayFor(modelItem => item.Ingredient15) <br />
+                                @if (!String.IsNullOrEmpty(item.Ingredient1))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient1) @Html.DisplayFor(modelItem => item.Ingredient1) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient2))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient2) @Html.DisplayFor(modelItem => item.Ingredient2) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient3))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient3) @Html.DisplayFor(modelItem => item.Ingredient3) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient4))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient4) @Html.DisplayFor(modelItem => item.Ingredient4) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient5))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient5) @Html.DisplayFor(modelItem => item.Ingredient5) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient6))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient6) @Html.DisplayFor(modelItem => item.Ingredient6) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient7))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient7) @Html.DisplayFor(modelItem => item.Ingredient7) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient8))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient8) @Html.DisplayFor(modelItem => item.Ingredient8) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient9))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient9) @Html.DisplayFor(modelItem => item.Ingredient9) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient10))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient10) @Html.DisplayFor(modelItem => item.Ingredient10) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient11))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient11) @Html.DisplayFor(modelItem => item.Ingredient11) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient12))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient12) @Html.DisplayFor(modelItem => item.Ingredient12) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient13))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient13) @Html.DisplayFor(modelItem => item.Ingredient13) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient14))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient14) @Html.DisplayFor(modelItem => item.Ingredient14) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient15))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient15) @Html.DisplayFor(modelItem => item.Ingredient15) <br />
+                                }
                             </td>
                             <td>
                                 <p>
@@ -136,6 +181,5 @@
             $(".active").removeClass("active");
             $("#link-favorite").addClass("active");
         });
-
     </script>
 }
