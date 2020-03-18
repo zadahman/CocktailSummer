@@ -1,4 +1,5 @@
-﻿using CoScheduleChallenge.Models;
+﻿using CoScheduleChallenge.DataContext;
+using CoScheduleChallenge.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -60,7 +61,7 @@ namespace CoScheduleChallenge.Controllers
                 User user = _dbContext.Users.FirstOrDefault();
                 _dbContext.Cocktails.Add(model);
                 _dbContext.SaveChanges();
-                return new JsonResult($"{user.Username} - The {model.Name} Cocktail has been Successfully Added to your Favorites.");
+                return new JsonResult($"{user.Username}, the {model.Name} Cocktail has been Successfully Added to your Favorites.");
             }
             catch(Exception ex)
             {
@@ -80,6 +81,52 @@ namespace CoScheduleChallenge.Controllers
         {
             Cocktail cocktail = _dbContext.Cocktails.Find(id);
             return View(cocktail);
+        }
+
+
+        [HttpGet]
+        public ActionResult GetComment()
+        {
+            try
+            {
+                Comment getComment = new Comment();
+
+                if (_dbContext.Comments.Any())
+                {
+                    getComment = _dbContext.Comments.FirstOrDefault();
+                }
+
+                return new JsonResult(getComment.UserComment);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest($"Error occurred. {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateComment([FromBody] string comment)
+        {
+            try
+            {
+                Comment getComment = new Comment();
+
+                if (_dbContext.Comments.Any())
+                {
+                    getComment = _dbContext.Comments.FirstOrDefault();
+                }
+
+                getComment.UserComment = comment;
+                _dbContext.SaveChanges();
+
+                return new JsonResult(getComment.UserComment);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest($"Error occurred. {ex.Message}");
+            }
         }
 
         [HttpPost]

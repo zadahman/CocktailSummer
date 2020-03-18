@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model CoScheduleChallenge.Models.Comment;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,12 +32,68 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Cocktail Summer</p>
+
+            @Html.BeginForm(){
+            <div class="form-group row mt-md-5">
+                @Html.LabelFor("UserComment", "Comment", new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(model => model.UserComment, new { @class = "form-control" })
+                </div>
+                @*<label for="comment" class="col-sm-2 col-form-label">Comment</label>
+            <div class="col-sm-10">
+                <textarea class="form-control"
+                          cols="20"
+                          id="comment"
+                          name="comment"
+                          placeholder="Enter your comments..."
+                          rows="2"></textarea>
+            </div>*@
+                <div>
+                    <button id="updateComment" class="btn btn-outline-info" type="submit" onclick="updateComment() "> Update Comment </button>
+                </div>
+            </div>
+            }
+
+
         </footer>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetComment", "Home")',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    $('#comment').val(response);
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
+        });
+
+        function updateComment() {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdateComment", "Home")',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify( $('#comment').val()),
+                success: function (response) {
+                    $('#comment').val(response);
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
+        }
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

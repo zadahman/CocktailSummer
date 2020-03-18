@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace CoScheduleChallenge.Models
 {
-	public class Cocktail
+    public class Cocktail
     {
         [JsonPropertyName("idDrink")]
         public string Id { get; set; }
@@ -115,5 +114,7 @@ namespace CoScheduleChallenge.Models
 
 		[JsonPropertyName("strMeasure15")]
 		public string MeasureForIngredient15 { get; set; }
+
+        public string Comment { get; set; }
 	}
 }

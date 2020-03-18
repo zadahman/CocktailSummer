@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CoScheduleChallenge.Models;
+using CoScheduleChallenge.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,7 +39,7 @@ namespace CoScheduleChallenge
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+                        
             app.UseRouting();
 
             app.UseAuthorization();

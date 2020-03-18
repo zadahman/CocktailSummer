@@ -6,10 +6,10 @@
     <div class="card-header">
         <h5>Spice up your summer with refreshing cocktails from our directory.</h5>
 
-        <form class="form-inline">
+        <form id="findForm" class="form-inline">
             <input id="searchWord" class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search">
             <button id="search" class="btn btn-outline-primary" type="button">
-                <span id="searchSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 
+                <span id="searchSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Search
             </button>
         </form>
@@ -17,8 +17,9 @@
 
     </div>
     <div class="card-body">
+
+        <span id="msg" aria-hidden="true"></span>
         <table id="cocktailResult" class="table table-striped">
-            
         </table>
     </div>
 </div>
@@ -26,12 +27,23 @@
 @section Scripts {
     <script type="text/javascript">
         let search = document.getElementById("search");
-
-        var cocktailData = new Array();
+        let cocktailData = new Array();
+                
+        $("#findForm").submit(function () {
+            find();
+            return false;
+        })
 
         search.addEventListener("click", event => {
             event.preventDefault();
+
+            find();
+        });
+
+        function find() {
             $('#searchSpinner').show();
+            $('#cocktailResult').empty();
+            $('#msg').hide();
 
             var searchWord = $('#searchWord').val();
 
@@ -40,28 +52,34 @@
             fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchWord)
                 .then((response) => { return response.json(); })
                 .then((data) => {
-                    cocktailData = data.drinks;
-                    var cocktailResultHtml = ' <tr class="table-info"><th> Name </th><th> @Html.DisplayName("Drink Type")</th>' +
-                                            '<th> @Html.DisplayName("Glass Type") </th><th>@Html.DisplayName("Drink Category")</th><th></th><th></th></tr>';
-                    data.drinks.forEach(drink => {   
-                        cocktailResultHtml += '<tr id=\''+drink.idDrink+'\'>';
-                        cocktailResultHtml += '<td>'+drink.strDrink+'</td>';
-                        cocktailResultHtml += '<td>'+drink.strAlcoholic+'</td>';
-                        cocktailResultHtml += '<td>'+drink.strGlass+'</td>';
-                        cocktailResultHtml += '<td>'+drink.strCategory+'</td>';
-                        cocktailResultHtml += '<td> <img src=\'' + drink.strDrinkThumb + '\' width=\'50\' height=\'50\' /></td>';
-                        cocktailResultHtml += '<td> <input type="button" class="btn btn btn-outline-info btn-sm mr-2" value="Add" onclick="addToFavs(' + drink.idDrink + ')" /> </td>';
-                        cocktailResultHtml += '</tr>';
-                    });
+                    if (data.drinks == null) {
+                        $('#searchSpinner').hide();
+                        $('#msg').show().text("No cocktail found with the name " + searchWord).addClass("text-danger");
+                    }
+                    else {
+                        cocktailData = data.drinks;
+                        var cocktailResultHtml = ' <tr class="table-info"><th> Name </th><th> @Html.DisplayName("Drink Type")</th>' +
+                            '<th> @Html.DisplayName("Glass Type") </th><th>@Html.DisplayName("Drink Category")</th><th></th><th></th></tr>';
+                        data.drinks.forEach(drink => {
+                            cocktailResultHtml += '<tr id=\'' + drink.idDrink + '\'>';
+                            cocktailResultHtml += '<td>' + drink.strDrink + '</td>';
+                            cocktailResultHtml += '<td>' + drink.strAlcoholic + '</td>';
+                            cocktailResultHtml += '<td>' + drink.strGlass + '</td>';
+                            cocktailResultHtml += '<td>' + drink.strCategory + '</td>';
+                            cocktailResultHtml += '<td> <img src=\'' + drink.strDrinkThumb + '\' width=\'50\' height=\'50\' /></td>';
+                            cocktailResultHtml += '<td> <input type="button" class="btn btn btn-outline-info btn-sm mr-2" value="Add" onclick="addToFavs(' + drink.idDrink + ')" /> </td>';
+                            cocktailResultHtml += '</tr>';
+                        });
 
-                    $('#cocktailResult').append(cocktailResultHtml);
-                    $('#searchSpinner').hide();
+                        $('#cocktailResult').append(cocktailResultHtml);
+                        $('#searchSpinner').hide();
+                    }
                 });
             
-        });
+        }
 
         function addToFavs(id) {
-
+            $('#msg').hide();
             var query = cocktailData.find(x => x.idDrink == id);
 
             $.ajax({
@@ -71,14 +89,14 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(query),
                 success: function (response) {
-                    alert(response);
+                    $('#msg').show().text(response).addClass("text-success");
                 },
                 error: function (err) {
                     alert(err.responseText);
                 }
             });
         }
-
+        
         $(document).ready(function () {
             $(".active").removeClass("active");
             $("#link-home").addClass("active");
