@@ -2,6 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/.vs
+/.vs
+
 /CoScheduleChallenge/CoScheduleChallenge/bin/Debug/netcoreapp3.1
 /CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1
 /CoScheduleChallenge/.vs/CoScheduleChallenge/v16

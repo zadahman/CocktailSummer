@@ -1,58 +1,76 @@
-﻿@model CoSchedule_Challenge.Models.Cocktail;
+﻿@model CoScheduleChallenge.Models.Cocktail;
 
 @{
     ViewBag.Title = "Edit Cocktail";
 }
 
-<h1>
-    ViewBag.Title
-</h1>
-<div class="form-horizontal">
-    @using (Html.BeginForm())
-    {
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name)
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
+<div class="card">
+    <div class="card-header">
+        <h3>
+            @ViewBag.Title
+        </h3>
+    </div>
+    <div class="card-body">
+
+        <div class="form-horizontal">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label("GlassType", "Glass Type", new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GlassType, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label("DrinkType", "Drink Type", new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DrinkType, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.Label("DrinkCategory", "Drink Category", new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DrinkCategory, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Instructions, new { @class = "col-sm-2 col-form-label" })
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(model => model.Instructions, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2">
+                        <input type="submit" value="Save" class="btn btn-block btn-primary" />
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Favorites")
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.Label("GlassType")
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GlassType)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Drink Type")
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DrinkType)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Drink Category")
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DrinkCategory)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Instructions)
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Instructions)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-outline-primary" />
-            </div>
-        </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Favorites")
     </div>
 </div>
+
+
+@section Scripts  {
+    <script>
+        $(document).ready(function () {
+            $(".active").removeClass("active");
+            $("#link-favorite").addClass("active");
+        });
+
+    </script>
+}

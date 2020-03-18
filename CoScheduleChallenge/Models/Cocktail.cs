@@ -1,12 +1,6 @@
-﻿using CoScheduleChallenge.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using System.Web;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace CoSchedule_Challenge.Models
+namespace CoScheduleChallenge.Models
 {
     public class Cocktail
     {
@@ -14,9 +8,9 @@ namespace CoSchedule_Challenge.Models
         public string Id { get; set; }
 
         [JsonPropertyName("strDrink")]
-        public string Name { get; set; }
+		public string Name { get; set; }
 
-        [JsonPropertyName("strAlcoholic")]
+		[JsonPropertyName("strAlcoholic")]
         public string DrinkType { get; set; }
 
 		[JsonPropertyName("strGlass")]
@@ -120,5 +114,7 @@ namespace CoSchedule_Challenge.Models
 
 		[JsonPropertyName("strMeasure15")]
 		public string MeasureForIngredient15 { get; set; }
+
+        public string Comment { get; set; }
 	}
 }
