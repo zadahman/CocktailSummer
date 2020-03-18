@@ -32,16 +32,42 @@
         search.addEventListener("click", event => {
             event.preventDefault();
             var searchWord = "margarita";
+            var x = $('#searchWord').val();
 
             var url = '@Url.Action("Find", "Home")';
 
             fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchWord)
                 .then((response) => { return response.json(); })
                 .then((data) => {
-                    $('#cocktailResult').load(url, JSON.stringify(data.drinks));
-
+                    var outer = {};
+                    outer.cocktails = data.drinks;
+                    
+                  //  $('#cocktailResult').load(url, { model: JSON.stringify(outer) } );
+                    $('#cocktailResult').load(url, { model: JSON.stringify(data.drinks) } );
                 });
         });
+
+        function loadResults(query) {
+            
+            addToFavs.addEventListener("click", event => {
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Find", "Home")',
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(query),
+                    success: function (response) {
+                        $('#cocktailResult').load(url, { model: JSON.stringify(outer) } );
+                    },
+                    error: function (err) {
+                        alert(err.responseText);
+                    }
+                });
+		    });
+
+        }
 
         $(document).ready(function () {
             $(".active").removeClass("active");

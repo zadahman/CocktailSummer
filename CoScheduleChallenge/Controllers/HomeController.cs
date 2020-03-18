@@ -26,8 +26,9 @@ namespace CoScheduleChallenge.Controllers
             {
                 return RedirectToAction("CocktailHome"); 
             }
-            return View();
-            //return RedirectToAction("CocktailHome");
+            
+            //return View();
+            return RedirectToAction("CocktailHome");
         }
 
         [HttpPost]
@@ -51,11 +52,36 @@ namespace CoScheduleChallenge.Controllers
         {
             return View();
         }
-
-        public ActionResult Find([FromQuery]List<Cocktail> model)
+        /*
+        [HttpPost]
+        public ActionResult Find(List<Cocktail> model)
         {
+            List<Cocktail> modelToList = model.ToList();
+            return PartialView("Find", modelToList);
+        }
+        */
 
-            return PartialView("Find",model);
+        [HttpPost]
+        public ActionResult Find([FromQuery] Cocktails model)
+        {
+            List<Cocktail> modelToList = model.cocktails.ToList();
+            return PartialView("Find", modelToList);
+        }
+
+
+        [HttpPost]
+        public ActionResult Find([FromBody] Cocktail[] model)
+        {
+            List<Cocktail> modelToList = model.ToList();
+            return PartialView("Find", modelToList);
+        }
+
+
+        [HttpPost]
+        public ActionResult Find([FromBody] List<Cocktail> model)
+        {
+            List<Cocktail> modelToList = model.ToList();
+            return PartialView("Find", modelToList);
         }
 
         [HttpPost]
