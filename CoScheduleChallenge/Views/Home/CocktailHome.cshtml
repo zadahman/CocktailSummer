@@ -54,6 +54,7 @@
                 .then((data) => {
                     if (data.drinks == null) {
                         $('#searchSpinner').hide();
+                        $('#msg').removeClass("text-success");
                         $('#msg').show().text("No cocktail found with the name " + searchWord).addClass("text-danger");
                     }
                     else {
@@ -89,6 +90,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(query),
                 success: function (response) {
+                    $('#msg').removeClass("text-danger");
                     $('#msg').show().text(response).addClass("text-success");
                 },
                 error: function (err) {
