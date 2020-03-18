@@ -26,8 +26,8 @@ namespace CoScheduleChallenge.Controllers
             {
                 return RedirectToAction("CocktailHome"); 
             }
-            //return View();
-            return RedirectToAction("CocktailHome");
+            return View();
+            //return RedirectToAction("CocktailHome");
         }
 
         [HttpPost]
@@ -52,7 +52,7 @@ namespace CoScheduleChallenge.Controllers
             return View();
         }
 
-        public IActionResult Find([FromQuery]List< Cocktail> model)
+        public ActionResult Find([FromQuery]List<Cocktail> model)
         {
 
             return PartialView("Find",model);
