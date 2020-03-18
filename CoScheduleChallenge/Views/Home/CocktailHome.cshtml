@@ -1,5 +1,4 @@
-﻿@model List<CoScheduleChallenge.Models.Cocktail>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,64 +8,75 @@
 
         <form class="form-inline">
             <input id="searchWord" class="form-control mr-sm-2" type="search" placeholder="Search by Name" aria-label="Search">
-            <button id="search" class="btn btn-outline-success" type="button">Search</button>
+            <button id="search" class="btn btn-outline-primary" type="button">
+                <span id="searchSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 
+                Search
+            </button>
         </form>
 
-      
+
     </div>
-    <div id="cocktailResult" class="card-body">
+    <div class="card-body">
+        <table id="cocktailResult" class="table table-striped">
+            
+        </table>
     </div>
 </div>
 
 @section Scripts {
     <script type="text/javascript">
         let search = document.getElementById("search");
-        let random = document.getElementById("random");
-        let addToFavs = document.getElementById("addToFav");
 
-		let desc = document.getElementById('description');
-        let cocktailImgDiv = document.getElementById("cocktailImage");
-
-        var cocktailData;
+        var cocktailData = new Array();
 
         search.addEventListener("click", event => {
             event.preventDefault();
-            var searchWord = "margarita";
-            var x = $('#searchWord').val();
+            $('#searchSpinner').show();
+
+            var searchWord = $('#searchWord').val();
 
             var url = '@Url.Action("Find", "Home")';
 
             fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + searchWord)
                 .then((response) => { return response.json(); })
                 .then((data) => {
-                    var outer = {};
-                    outer.cocktails = data.drinks;
-                    
-                  //  $('#cocktailResult').load(url, { model: JSON.stringify(outer) } );
-                    $('#cocktailResult').load(url, { model: JSON.stringify(data.drinks) } );
+                    cocktailData = data.drinks;
+                    var cocktailResultHtml = ' <tr class="table-info"><th> Name </th><th> @Html.DisplayName("Drink Type")</th>' +
+                                            '<th> @Html.DisplayName("Glass Type") </th><th>@Html.DisplayName("Drink Category")</th><th></th><th></th></tr>';
+                    data.drinks.forEach(drink => {   
+                        cocktailResultHtml += '<tr id=\''+drink.idDrink+'\'>';
+                        cocktailResultHtml += '<td>'+drink.strDrink+'</td>';
+                        cocktailResultHtml += '<td>'+drink.strAlcoholic+'</td>';
+                        cocktailResultHtml += '<td>'+drink.strGlass+'</td>';
+                        cocktailResultHtml += '<td>'+drink.strCategory+'</td>';
+                        cocktailResultHtml += '<td> <img src=\'' + drink.strDrinkThumb + '\' width=\'50\' height=\'50\' /></td>';
+                        cocktailResultHtml += '<td> <input type="button" class="btn btn btn-outline-info btn-sm mr-2" value="Add" onclick="addToFavs(' + drink.idDrink + ')" /> </td>';
+                        cocktailResultHtml += '</tr>';
+                    });
+
+                    $('#cocktailResult').append(cocktailResultHtml);
+                    $('#searchSpinner').hide();
                 });
+            
         });
 
-        function loadResults(query) {
-            
-            addToFavs.addEventListener("click", event => {
-                event.preventDefault();
+        function addToFavs(id) {
 
-                $.ajax({
-                    type: 'POST',
-                    url: '@Url.Action("Find", "Home")',
-                    dataType: 'json',
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify(query),
-                    success: function (response) {
-                        $('#cocktailResult').load(url, { model: JSON.stringify(outer) } );
-                    },
-                    error: function (err) {
-                        alert(err.responseText);
-                    }
-                });
-		    });
+            var query = cocktailData.find(x => x.idDrink == id);
 
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddCocktail", "Home")',
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(query),
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
         }
 
         $(document).ready(function () {

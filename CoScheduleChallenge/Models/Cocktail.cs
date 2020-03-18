@@ -1,19 +1,14 @@
-﻿using System.Text.Json.Serialization;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace CoScheduleChallenge.Models
 {
-	public class Cocktails
-	{
-		public Cocktail[] cocktails { get; set; }
-	}
-
 	public class Cocktail
     {
         [JsonPropertyName("idDrink")]
         public string Id { get; set; }
 
         [JsonPropertyName("strDrink")]
-		public string strDrink { get; set; }
 		public string Name { get; set; }
 
 		[JsonPropertyName("strAlcoholic")]

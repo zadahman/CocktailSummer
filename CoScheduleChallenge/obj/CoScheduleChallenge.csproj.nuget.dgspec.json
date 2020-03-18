@@ -1,31 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zilla\\Documents\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj": {}
+    "C:\\Users\\Visitor\\Downloads\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zilla\\Documents\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj": {
+    "C:\\Users\\Visitor\\Downloads\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zilla\\Documents\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj",
+        "projectUniqueName": "C:\\Users\\Visitor\\Downloads\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj",
         "projectName": "CoScheduleChallenge",
-        "projectPath": "C:\\Users\\zilla\\Documents\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj",
-        "packagesPath": "C:\\Users\\zilla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zilla\\Documents\\CocktailSummer\\CoScheduleChallenge\\obj\\",
+        "projectPath": "C:\\Users\\Visitor\\Downloads\\CocktailSummer\\CoScheduleChallenge\\CoScheduleChallenge.csproj",
+        "packagesPath": "C:\\Users\\Visitor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Visitor\\Downloads\\CocktailSummer\\CoScheduleChallenge\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\zilla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Visitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netcoreapp3.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "netcoreapp3.0": {
             "projectReferences": {}
           }
         },
@@ -36,7 +36,7 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "netcoreapp3.0": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
