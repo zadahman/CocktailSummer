@@ -2,6 +2,17 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+.vs/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
 /CoScheduleChallenge/CoScheduleChallenge/bin/Debug/netcoreapp3.1
 /CoScheduleChallenge/CoScheduleChallenge/obj/Debug/netcoreapp3.1
 /CoScheduleChallenge/.vs/CoScheduleChallenge/v16
