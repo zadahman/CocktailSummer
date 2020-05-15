@@ -1,4 +1,4 @@
-# CoScheduleChallenge_CocktailSummer
+# CocktailSummer
 Challenge
 
 Make sure you're runnning asp.net core 3.0 or higher!
