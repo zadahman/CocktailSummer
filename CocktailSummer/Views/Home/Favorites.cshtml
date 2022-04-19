@@ -1,0 +1,185 @@
+﻿@model IEnumerable<CocktailSummer.Models.Cocktail>
+
+@inject IJsonHelper Json;
+
+@{
+    ViewData["Title"] = "Your Favorite Cocktails";
+}
+
+<div class="card mt-3 pt-2">
+    <div class="card-header">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr class="table-info">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Drink Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Glass Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Drink Category")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Instructions)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Ingredients")
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @using (Html.BeginForm())
+                    {
+                        <tr id="@item.Id">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DrinkType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GlassType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DrinkCategory)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instructions)
+                            </td>
+                            <td>
+                                @if (!String.IsNullOrEmpty(item.Ingredient1))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient1) @Html.DisplayFor(modelItem => item.Ingredient1) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient2))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient2) @Html.DisplayFor(modelItem => item.Ingredient2) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient3))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient3) @Html.DisplayFor(modelItem => item.Ingredient3) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient4))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient4) @Html.DisplayFor(modelItem => item.Ingredient4) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient5))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient5) @Html.DisplayFor(modelItem => item.Ingredient5) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient6))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient6) @Html.DisplayFor(modelItem => item.Ingredient6) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient7))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient7) @Html.DisplayFor(modelItem => item.Ingredient7) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient8))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient8) @Html.DisplayFor(modelItem => item.Ingredient8) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient9))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient9) @Html.DisplayFor(modelItem => item.Ingredient9) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient10))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient10) @Html.DisplayFor(modelItem => item.Ingredient10) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient11))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient11) @Html.DisplayFor(modelItem => item.Ingredient11) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient12))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient12) @Html.DisplayFor(modelItem => item.Ingredient12) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient13))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient13) @Html.DisplayFor(modelItem => item.Ingredient13) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient14))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient14) @Html.DisplayFor(modelItem => item.Ingredient14) <br />
+                                }
+                                @if (!String.IsNullOrEmpty(item.Ingredient15))
+                                {
+                                    @Html.DisplayFor(modelItem => item.MeasureForIngredient15) @Html.DisplayFor(modelItem => item.Ingredient15) <br />
+                                }
+                            </td>
+                            <td>
+                                <p>
+                                    <img title="Click to View" src="@item.ImageLink" width="30" height="30" type="button" class="btn btn-sm bs-tooltip-bottom" data-toggle="modal" data-target="#pop-@item.Id" />
+                                </p>
+
+                                <div class="modal fade" id="pop-@item.Id" tabindex="-1" role="dialog" aria-labelledby="cocktailImageLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <img src="@item.ImageLink" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="button" title="Edit" class="btn btn btn-outline-info btn-sm mr-2" value="Edit" onclick="location.href='@Url.Action("EditCocktail", "Home", new { id = item.Id })'" />
+                                <button class="btn btn btn-outline-info btn-sm mt-2" onclick="deleteCocktail(@item.Id)" type="button">Delete</button>
+                            </td>
+                        </tr>
+                    }
+
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts  {
+    <script>
+        function editing(ctId) {
+             $.ajax({
+                type: 'GET',
+                url: '@Url.Action("EditCocktail", "Home")?id=' + ctId,
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (err) {
+                    alert(err.responseText);
+                }
+            });
+        };
+
+        function deleteCocktail(id) {
+        $.ajax({
+            type: 'DELETE',
+            url: '@Url.Action("DeleteCocktail", "Home")?id=' + id,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                alert(response);
+                window.location.reload();
+            },
+            error: function (err) {
+                alert(err.responseText);
+            }
+        });
+        }
+
+        $(document).ready(function () {
+            $(".active").removeClass("active");
+            $("#link-favorite").addClass("active");
+        });
+    </script>
+}
